@@ -1,10 +1,13 @@
-# Data Compression: Run-Length Encoding (RLE)
+# Data Compression: PackBits - an RLE Variant
 COMP 211 Checkoff 3 - Oscar Liu
+Sub-topic: PackBits (the TIFF/MacPaint form of run-length encoding).
+General RLE is the background; PackBits is my focus, because it
+fixes RLE's worst flaw - data with no repeats getting bigger.
 
 ## What I explored
 How computers store the same information in fewer bits, using
 run-length encoding (RLE) - one of the simplest lossless
-compression techniques.
+compression techniques - and specifically its PackBits variant.
 
 ## How RLE works
 Data often contains "runs": the same value repeated in a row.
@@ -32,6 +35,21 @@ that many times.
 3. **Lossless vs lossy matters.** RLE is lossless - you get the
    exact original back, which is required for text and files.
    Formats like JPEG can throw away detail, RLE cannot.
+
+## My focus: PackBits
+PackBits (Apple, used in MacPaint and TIFF) encodes data in
+packets. Each packet starts with one signed header byte:
+
+- **0 to 127 - LITERAL packet:** copy the next (header + 1) bytes as-is.
+- **-1 to -127 - RUN packet:** repeat the next byte (1 - header) times.
+  Example: header -11 followed by `A` means 12 A's, in 2 bytes total.
+- **-128 - no-op:** do nothing (reserved).
+
+Why it matters: plain RLE turns `ABABABAB` into 16 bytes (double).
+PackBits uses a literal packet instead: header 7 + the 8 bytes =
+9 bytes. Its worst case is about 1 extra byte per 128 literals
+(~0.8% growth), not 100%. The encoder picks per packet whichever
+form - run or literal - is smaller.
 
 ## Code
 `rle.c` - a small C program that encodes and decodes strings
