@@ -46,8 +46,9 @@ gcc -std=c11 -Wall -Wextra -o rle rle.c
 ```
 
 ## Presentation
-See `SLIDES_OUTLINE.md` for the slide content and talk script
-in my presentation notes. Slides were created from this outline.
+Google Slides deck: https://docs.google.com/presentation/d/1S7XepYhJWi1tYl9BytsiJMJWrft5V0FO2-NVgvPa1Fo/edit
+See `PRESENTATION.md` in this repo for the full slide-by-slide
+content of the deck.
 
 ## Resources
 - COMP 211 course material on data representation / bitwise topics
