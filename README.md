@@ -50,6 +50,31 @@ Google Slides deck: https://docs.google.com/presentation/d/1S7XepYhJWi1tYl9Bytsi
 See `PRESENTATION.md` in this repo for the full slide-by-slide
 content of the deck.
 
+## Reflection on using AI
+I learned a lot from my time doing this project. I used AI (Muse)
+as a tutor to explore RLE: I started by asking it to summarize the
+assignment and my topic, then asked for a C example I could compile
+and run myself, and then asked follow-up questions until I could
+explain the code on my own.
+
+Prompts I actually used in that conversation:
+- "can u summarize my duties and help me start" (with the assignment)
+- "what does sprintf do in C"
+- "can u explain each part of the code for me"
+
+AI is really useful for explaining new things and helping people
+learn - the multi-digit count in decode (count = count * 10 + digit)
+only clicked for me after that explanation. It is not always right,
+though: the AI first told me the encoded example was 8 characters,
+and running the program showed it was actually 9, so testing things
+myself mattered. AI is so powerful that we can't misuse it - it
+should be used to understand things, not to avoid learning them.
+What I would do differently: start earlier, and test first instead
+of reading first.
+
+AI conversation: Muse (Meta AI), Nov 19, 2026 - this app does not
+generate a public permalink; transcript available on request.
+
 ## Resources
 - COMP 211 course material on data representation / bitwise topics
 - Run-length encoding - Wikipedia (overview and BMP/TIFF/fax uses)
