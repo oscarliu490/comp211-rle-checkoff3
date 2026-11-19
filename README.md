@@ -52,12 +52,22 @@ PackBits uses a literal packet instead: header 7 + the 8 bytes =
 form - run or literal - is smaller.
 
 ## Code
-`rle.c` - a small C program that encodes and decodes strings
-with RLE and shows a good case, an image-like case, and a
-bad case where the data grows.
+`packbits.c` - **my main code**: a PackBits encoder/decoder in C.
+Verified results: `AAAABXYZ` (8 bytes) -> 7 bytes as packets
+[-3][3], where plain RLE needs 10; `ABABABAB` -> 9 bytes where
+plain RLE needs 16; 12 A's -> 2 bytes. All round-trip tests pass,
+including a run of 300 and 1000 pseudo-random bytes.
+
+`rle.c` - the plain RLE version, kept for comparison: it encodes
+and decodes strings with RLE and shows a good case, an image-like
+case, and the bad case where the data grows - the flaw PackBits
+fixes.
 
 ### Run it
 ```bash
+gcc -std=c11 -Wall -Wextra -o packbits packbits.c
+./packbits
+
 gcc -std=c11 -Wall -Wextra -o rle rle.c
 ./rle
 ./rle AAAAABBBCC
